@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newsletters — Natalie Daher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ovo&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red: #c8382a;
+  --red-light: #f5e8e7;
+  --ink: #111110;
+  --ink-soft: #3a3a38;
+  --gray: #888884;
+  --rule: #ddddd9;
+  --white: #ffffff;
+  --paper: #fafaf8;
+
+  --f-display: 'Ovo', Georgia, serif;
+  --f-serif: 'Ovo', Georgia, serif;
+  --f-mono: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--f-mono);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* HEADER */
+header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 1.5rem 2.5rem;
+  border-bottom: 1.5px solid var(--ink);
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  z-index: 50;
+}
+
+.h-left {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+.h-logo {
+  font-family: var(--f-display);
+  font-size: 1.05rem;
+  text-align: center;
+}
+
+.h-logo span { color: var(--red); }
+
+.h-right {
+  display: flex;
+  gap: 1.75rem;
+  justify-content: flex-end;
+  list-style: none;
+}
+
+.h-right a {
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
+  transition: color 0.15s;
+}
+
+.h-right a:hover { color: var(--red); }
+.h-right a.active { color: var(--red); }
+
+/* PAGE TOP */
+.page-top {
+  padding: 5rem 2.5rem 3rem;
+  max-width: 1300px;
+  margin: 0 auto;
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.page-eyebrow {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.page-eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+.page-title {
+  font-family: var(--f-display);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
+
+.page-desc {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  max-width: 60ch;
+  line-height: 1.7;
+}
+
+/* NEWSLETTER CARDS ROW */
+.nl-cards {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 4rem 2.5rem 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+.nl-card {
+  background: var(--white);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.nl-card-badge {
+  display: inline-block;
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid var(--rule);
+  color: var(--gray);
+  width: fit-content;
+}
+
+.nl-card-logo {
+  font-family: var(--f-display);
+  font-size: 2.25rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0.5rem 0;
+}
+
+.nl-card-logo .outlet { color: var(--red); }
+
+.nl-card-desc {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.nl-card-role {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+}
+
+/* SAMPLES SECTIONS */
+.nl-wrap {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 2.5rem 6rem;
+}
+
+.nl-section {
+  padding: 4rem 0;
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.nl-section:last-child { border-bottom: none; }
+
+.nl-section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.nl-section-name {
+  font-family: var(--f-display);
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.nl-section-role {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+  white-space: nowrap;
+}
+
+/* For KnowThis, add a description block */
+.nl-intro {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  max-width: 72ch;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.nl-subsection-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--red);
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+
+.nl-subsection-label:first-of-type { margin-top: 0; }
+
+.piece-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.piece-item {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+.piece-item:last-child { border-bottom: none; }
+
+.piece-item a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  transition: color 0.15s;
+}
+
+.piece-item a::before {
+  content: '↗';
+  font-size: 0.7rem;
+  color: var(--red);
+  flex-shrink: 0;
+  transition: transform 0.15s;
+}
+
+.piece-item a:hover { color: var(--red); }
+.piece-item a:hover::before { transform: translate(2px, -2px); }
+
+/* TWO-COL LIST */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 3rem; }
+
+/* SELECTED WORK SECTION */
+.selected-work {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 4rem 2.5rem 6rem;
+  border-top: 1.5px solid var(--ink);
+}
+
+.sw-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+
+.sw-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+.sw-title {
+  font-family: var(--f-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 3rem;
+}
+
+.work-list { display: flex; flex-direction: column; }
+
+.work-entry {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: start;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+
+.work-entry::before {
+  content: '';
+  position: absolute;
+  left: -2.5rem; right: -2.5rem; top: 0; bottom: 0;
+  background: var(--red-light);
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: -1;
+}
+
+.work-entry:hover::before { opacity: 1; }
+
+.work-num {
+  font-size: 0.65rem;
+  color: var(--red);
+  padding-top: 0.3rem;
+  letter-spacing: 0.05em;
+  min-width: 2rem;
+}
+
+.work-pub {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 0.5rem;
+}
+
+.work-title {
+  font-family: var(--f-display);
+  font-size: 1.35rem;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+
+.work-desc {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+.work-arrow {
+  font-size: 0.9rem;
+  color: var(--red);
+  padding-top: 0.3rem;
+  transition: transform 0.15s;
+}
+
+.work-entry:hover .work-arrow { transform: translate(3px, -3px); }
+
+.work-video-entry {
+  border: 1.5px solid var(--ink);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.work-video-frame iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  display: block;
+  border: none;
+}
+
+.work-video-text {
+  padding: 2.5rem;
+  background: var(--ink);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.work-video-text .work-pub { color: rgba(255,255,255,0.4); }
+.work-video-text .work-title { color: var(--white); font-size: 1.5rem; }
+.work-video-text .work-desc { color: rgba(255,255,255,0.6); }
+
+.work-video-link {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-top: 1.5rem;
+  display: inline-block;
+  transition: color 0.15s;
+}
+
+.work-video-link:hover { color: var(--white); }
+
+/* FOOTER */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2.5rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
+  border-top: 1px solid var(--rule);
+}
+
+/* MOBILE */
+@media (max-width: 800px) {
+  header { grid-template-columns: 1fr 1fr; padding: 1rem 1.25rem; }
+  .h-left { display: none; }
+  .h-logo { text-align: left; }
+  .h-right { gap: 0.75rem; }
+
+  .page-top { padding: 3rem 1.25rem 2rem; }
+  .nl-cards { grid-template-columns: 1fr; padding: 2rem 1.25rem 0; }
+  .nl-wrap { padding: 0 1.25rem 4rem; }
+  .nl-section-header { flex-direction: column; gap: 0.5rem; }
+  .two-col { grid-template-columns: 1fr; }
+  .selected-work { padding: 3rem 1.25rem 4rem; }
+  .work-video-entry { grid-template-columns: 1fr; }
+  .work-video-frame { display: none; }
+  .work-entry { grid-template-columns: auto 1fr; }
+  .work-arrow { display: none; }
+  footer { flex-direction: column; gap: 0.4rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="h-left">Washington, DC &nbsp;·&nbsp; Journalist</span>
+  <a class="h-logo" href="index.html">Natalie <span>Daher</span></a>
+  <ul class="h-right">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="editing.html">Editing</a></li>
+    <li><a href="newsletters.html" class="active">Newsletters</a></li>
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="index.html#resume">Résumé</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</header>
+
+<div class="page-top">
+  <div class="page-eyebrow">Newsletters</div>
+  <h1 class="page-title">Newsletter work</h1>
+  <p class="page-desc">Writing, editing, and producing newsletters across Axios and NowThis — from flagship morning briefings to breaking news roundups.</p>
+</div>
+
+<!-- NEWSLETTER CARDS -->
+<div class="nl-cards">
+  <div class="nl-card">
+    <div class="nl-card-badge">Axios · Flagship</div>
+    <div class="nl-card-logo"><span class="outlet">Axios</span> AM</div>
+    <p class="nl-card-desc">The morning briefing read by Washington's most influential — covering politics, business, tech, and culture in Smart Brevity format.</p>
+    <div class="nl-card-role">Writer &amp; editor</div>
+  </div>
+  <div class="nl-card">
+    <div class="nl-card-badge">Axios · Flagship</div>
+    <div class="nl-card-logo"><span class="outlet">Axios</span> PM</div>
+    <p class="nl-card-desc">The afternoon send rounding up the day's most important stories — fast, clean, and built for busy readers.</p>
+    <div class="nl-card-role">Writer &amp; editor</div>
+  </div>
+  <div class="nl-card">
+    <div class="nl-card-badge">NowThis · Flagship</div>
+    <div class="nl-card-logo"><span class="outlet">Know</span>This</div>
+    <p class="nl-card-desc">NowThis's daily mobile-first briefing covering the top five stories — written and produced for young audiences. During my tenure as full-time producer, open rates rose 4%, achieving the newsletter's best-ever open rate in summer 2020.</p>
+    <div class="nl-card-role">Writer, editor &amp; producer</div>
+  </div>
+</div>
+
+<!-- SAMPLES -->
+<div class="nl-wrap">
+
+  <!-- AXIOS AM -->
+  <div class="nl-section" id="axios-am">
+    <div class="nl-section-header">
+      <div class="nl-section-name">Axios AM</div>
+      <div class="nl-section-role">Writer &amp; editor</div>
+    </div>
+    <ul class="piece-list">
+      <li class="piece-item"><a href="https://www.axios.com/newsletters/axios-am-9b0cd6cf-8921-48f3-8c9f-fb65bde07b6d.html?utm_source=newsletter&utm_medium=email&utm_campaign=newsletter_axiosam&stream=top" target="_blank" rel="noopener">Axios AM: Cold case revival</a></li>
+      <li class="piece-item"><a href="https://www.axios.com/newsletters/axios-am-8f965d46-b27e-4150-b816-038254dd5fd8.html?utm_source=newsletter&utm_medium=email&utm_campaign=newsletter_axiosam&stream=top" target="_blank" rel="noopener">Axios AM: Private GOP polling</a></li>
+      <li class="piece-item"><a href="https://www.axios.com/newsletters/axios-am-02bc6c42-a8b5-4f69-a49e-e0d8f6f196e1.html?utm_source=newsletter&utm_medium=email&utm_campaign=newsletter_axiosam&stream=top" target="_blank" rel="noopener">Axios AM: Bonfire of expertise</a></li>
+      <li class="piece-item"><a href="https://www.axios.com/newsletters/axios-am-e0706e56-cf12-4c0d-97e9-e7980b12d30d.html?utm_source=newsletter&utm_medium=email&utm_campaign=newsletter_axiosam&stream=top" target="_blank" rel="noopener">Axios AM: American Dream gap</a></li>
+      <li class="piece-item"><a href="https://www.axios.com/newsletters/axios-am-d324d876-af62-467f-9bdd-c30351bd96bb.html?utm_source=newsletter&utm_medium=email&utm_campaign=newsletter_axiosam&stream=top" target="_blank" rel="noopener">Axios AM: Trump authoritarian streak</a></li>
+    </ul>
+  </div>
+
+  <!-- AXIOS PM -->
+  <div class="nl-section" id="axios-pm">
+    <div class="nl-section-header">
+      <div class="nl-section-name">Axios PM</div>
+      <div class="nl-section-role">Writer &amp; editor</div>
+    </div>
+    <ul class="piece-list">
+      <li class="piece-item"><a href="https://www.axios.com/newsletters/axios-pm-cfb83c09-5266-41c8-9d4c-fc53ad8e4050.html" target="_blank" rel="noopener">Axios PM: U.S. will "run" Venezuela</a></li>
+      <li class="piece-item"><a href="https://www.axios.com/newsletters/axios-pm-399b2375-418a-4484-8be2-a962527f4d6d.html" target="_blank" rel="noopener">Axios PM: "The Apprentice 2024"</a></li>
+      <li class="piece-item"><a href="https://www.axios.com/newsletters/axios-pm-5dec88ac-16db-4e18-b472-e70a12c787cc.html?utm_source=newsletter&utm_medium=email&utm_campaign=newsletter_axiospm&stream=top" target="_blank" rel="noopener">Axios PM: Debates are on</a></li>
+      <li class="piece-item"><a href="https://www.axios.com/newsletters/axios-pm-9af597cb-cce1-42d5-ae60-b938c35c4aee.html" target="_blank" rel="noopener">Axios PM: Trump's loyal speakers</a></li>
+      <li class="piece-item"><a href="https://www.axios.com/newsletters/axios-pm-7eca0cc8-440e-4474-865f-926dd43c748e.html" target="_blank" rel="noopener">Axios PM: Stormy's mic drop</a></li>
+      <li class="piece-item"><a href="https://www.axios.com/newsletters/axios-pm-f3191b74-a493-4881-842a-cd566998e914.html" target="_blank" rel="noopener">Axios PM: Where grads are going</a></li>
+      <li class="piece-item"><a href="https://www.axios.com/newsletters/axios-pm-3d2f5fa8-8724-4f60-9320-9cee418a7f97.html" target="_blank" rel="noopener">Axios PM: "Just do it"</a></li>
+      <li class="piece-item"><a href="https://www.axios.com/newsletters/axios-pm-2ba0d939-a242-4d3c-a66c-fd74e04da861.html" target="_blank" rel="noopener">Axios PM: New SCOTUS crisis</a></li>
+    </ul>
+  </div>
+
+  <!-- KNOWTHIS -->
+  <div class="nl-section" id="knowthis">
+    <div class="nl-section-header">
+      <div class="nl-section-name">KnowThis</div>
+      <div class="nl-section-role">Writer, editor &amp; producer · NowThis</div>
+    </div>
+    <p class="nl-intro">At NowThis, I wrote, edited, and produced our daily flagship newsletter, KnowThis, which summarized the day's top five stories in a native mobile format. In my six months of producing the newsletter full-time, I increased our open rate by 4% — exceeding the industry standard — leading to the product's best-ever open rate during the summer of 2020 in its year-plus of existence. Prior to writing the newsletter full-time, I edited and wrote it interchangeably. In that process, I developed a new, streamlined workflow by working with insights, publishing and editorial teams.</p>
+
+    <div class="nl-subsection-label">Writing &amp; producing</div>
+    <ul class="piece-list two-col">
+      <li class="piece-item"><a href="https://nowthis.cmail19.com/t/ViewEmail/d/54716CFED99AFF152540EF23F30FEDED/770E981FD84BA22B1D419C9787CC9684?alternativeLink=False" target="_blank" rel="noopener">1 dead after pro-Trump mob storms Capitol, forces lockdown</a></li>
+      <li class="piece-item"><a href="https://nowthis.cmail20.com/t/ViewEmail/d/CC2AC2D5A6C166272540EF23F30FEDED/770E981FD84BA22B1D419C9787CC9684?alternativeLink=False" target="_blank" rel="noopener">Donald's fired. Joe's officially hired.</a></li>
+      <li class="piece-item"><a href="https://nowthis.cmail20.com/t/ViewEmail/d/84E5B840751C6CC22540EF23F30FEDED/770E981FD84BA22B1D419C9787CC9684" target="_blank" rel="noopener">Kamala Harris responds to racist "birther" attacks</a></li>
+      <li class="piece-item"><a href="https://nowthis.cmail19.com/t/ViewEmail/d/94E6452CED2A1D672540EF23F30FEDED/770E981FD84BA22B1D419C9787CC9684" target="_blank" rel="noopener">Celebs defending "Ellen" accused of gaslighting</a></li>
+      <li class="piece-item"><a href="https://nowthis.createsend1.com/t/ViewEmail/d/30ABC5E0F9FA0A692540EF23F30FEDED/071CD87C756AE67FBA4AF9908B8D85ED" target="_blank" rel="noopener">U.S. cities are seeing biggest protests yet</a></li>
+      <li class="piece-item"><a href="https://nowthis.createsend1.com/t/ViewEmail/d/1B14C91812516F7C2540EF23F30FEDED/770E981FD84BA22B1D419C9787CC9684" target="_blank" rel="noopener">The CDC added new coronavirus symptoms</a></li>
+      <li class="piece-item"><a href="https://nowthis.cmail19.com/t/ViewEmail/d/87BA5BC7727C8F3A2540EF23F30FEDED/770E981FD84BA22B1D419C9787CC9684" target="_blank" rel="noopener">State Dept to Americans: don't leave the country, period</a></li>
+      <li class="piece-item"><a href="https://nowthis.cmail20.com/t/ViewEmail/d/4454E6CD8834659E2540EF23F30FEDED/071CD87C756AE67FBA4AF9908B8D85ED" target="_blank" rel="noopener">Dr. Fauci warns of "suffering and death" if we reopen too soon</a></li>
+      <li class="piece-item"><a href="https://nowthis.cmail20.com/t/ViewEmail/d/D826BC281536F2082540EF23F30FEDED/071CD87C756AE67FBA4AF9908B8D85ED" target="_blank" rel="noopener">U.S. confirms first ICE detainee to have died from COVID-19</a></li>
+      <li class="piece-item"><a href="https://nowthis.cmail19.com/t/ViewEmail/d/0869E5C3BF4B132F2540EF23F30FEDED/071CD87C756AE67FBA4AF9908B8D85ED" target="_blank" rel="noopener">Texas reopens more businesses after highest one-day case spike</a></li>
+      <li class="piece-item"><a href="https://nowthis.cmail20.com/t/ViewEmail/d/3963626ACE12F2882540EF23F30FEDED" target="_blank" rel="noopener">Top U.S. health officials like Dr. Fauci are self-quarantining</a></li>
+      <li class="piece-item"><a href="https://nowthis.cmail19.com/t/ViewEmail/d/412ADFDEA2B869B22540EF23F30FEDED/770E981FD84BA22B1D419C9787CC9684" target="_blank" rel="noopener">Teddy bears, Dolly Parton, and "Tiger King" parodies: it's Friday</a></li>
+      <li class="piece-item"><a href="https://nowthis.createsend1.com/t/ViewEmail/d/ACCB878EA1EDC0272540EF23F30FEDED" target="_blank" rel="noopener">A billion people are about to go on full lockdown</a></li>
+    </ul>
+
+    <div class="nl-subsection-label">Editing</div>
+    <ul class="piece-list">
+      <li class="piece-item"><a href="https://nowthis.cmail20.com/t/ViewEmail/d/7F980ADC4F13C5DD2540EF23F30FEDED/770E981FD84BA22B1D419C9787CC9684" target="_blank" rel="noopener">How to manage your money right now</a></li>
+      <li class="piece-item"><a href="https://nowthis.createsend1.com/t/ViewEmail/d/F773FB6004B19A552540EF23F30FEDED/770E981FD84BA22B1D419C9787CC9684" target="_blank" rel="noopener">How to stay politically active while social distancing</a></li>
+      <li class="piece-item"><a href="https://nowthis.createsend1.com/t/ViewEmail/d/4DF4543558CC26B22540EF23F30FEDED" target="_blank" rel="noopener">Just in: UK prime minister tightens stay-at-home restrictions</a></li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- SELECTED WORK -->
+<div class="selected-work">
+  <div class="sw-label">Selected Work</div>
+  <h2 class="sw-title">Recent highlights.</h2>
+  <div class="work-list">
+
+    <div class="work-video-entry">
+      <div class="work-video-frame">
+        <iframe src="https://www.youtube.com/embed/2kwZox1KSm4" title="The Axios Show" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="work-video-text">
+        <div>
+          <div class="work-pub">The Axios Show · Executive Producer</div>
+          <div class="work-title">Launching The Axios Show</div>
+          <div class="work-desc">Launched and EP'd Axios's interview series with newsmakers across politics, business, tech, and culture.</div>
+        </div>
+        <a href="https://www.youtube.com/watch?v=2kwZox1KSm4" target="_blank" rel="noopener" class="work-video-link">Watch on YouTube ↗</a>
+      </div>
+    </div>
+
+    <a class="work-entry" href="https://www.axios.com/2025/10/25/cosmetic-plastic-surgery-gen-z" target="_blank" rel="noopener">
+      <div class="work-num">01</div>
+      <div class="work-body">
+        <div class="work-pub">Axios · 2025</div>
+        <div class="work-title">America's plastic surgery heyday</div>
+        <div class="work-desc">How Gen Z is reshaping cosmetic surgery culture — and what it says about beauty, identity, and social media's grip on a generation.</div>
+      </div>
+      <div class="work-arrow">↗</div>
+    </a>
+
+    <a class="work-entry" href="https://www.axios.com/2024/01/27/divorce-party-celebration" target="_blank" rel="noopener">
+      <div class="work-num">02</div>
+      <div class="work-body">
+        <div class="work-pub">Axios · 2024</div>
+        <div class="work-title">The rise of the divorce party</div>
+        <div class="work-desc">Divorce is losing its stigma — and people are throwing parties to prove it.</div>
+      </div>
+      <div class="work-arrow">↗</div>
+    </a>
+
+    <a class="work-entry" href="https://www.axios.com/newsletters/axios-am-9b0cd6cf-8921-48f3-8c9f-fb65bde07b6d.html" target="_blank" rel="noopener">
+      <div class="work-num">03</div>
+      <div class="work-body">
+        <div class="work-pub">Axios AM · Newsletter</div>
+        <div class="work-title">Axios AM flagship newsletter</div>
+        <div class="work-desc">Writing and editing for one of Washington's most-read morning newsletters.</div>
+      </div>
+      <div class="work-arrow">↗</div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 Natalie Daher</span>
+  <span>Built with intention</span>
+  <span>Washington, DC</span>
+</footer>
+
+</body>
+</html>
